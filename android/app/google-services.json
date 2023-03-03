@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "915929408798",
+    "project_id": "healthcar-6193a",
+    "storage_bucket": "healthcar-6193a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915929408798:android:ab4dbdc781a1bf411a550f",
+        "android_client_info": {
+          "package_name": "com.example.healthcar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915929408798-00k4t44s2icicvcpgfovco1tocnnelte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5k2pnrIgTKshsUAJTJCJj7IUwteW94-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915929408798-00k4t44s2icicvcpgfovco1tocnnelte.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
