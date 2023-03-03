@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcar/enterLocation.dart';
 import 'package:healthcar/loadingScreen.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,23 +61,27 @@ class HomePage extends StatelessWidget {
                       ),
                       SizedBox(height: 16.0),
                       Expanded(
-                        child: ListView(
-                          children: [
-                            RequestCard(
-                              location: 'Kolkata',
-                              time: '10:00 AM',
-                              name: 'suman',
-                              onDelete: () {},
-                            ),
-                            // RequestCard(
-                            //   isCompleted: true,
-                            //   onDelete: () {},
-                            //   subtitle: '78345834',
-                            //   onToggle: () {},
-                            //   title: 'suman sahoo',
-                            // ),
-                            // RequestCard(),
-                          ],
+                        child: StreamBuilder<QuerySnapshot>(
+                          stream: FirebaseFirestore.instance
+                              .collection('users')
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return Center(child: CircularProgressIndicator());
+                            }
+                            return ListView.builder(
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                var doc = snapshot.data!.docs[index];
+                                return RequestCard(
+                                  location: doc['location'],
+                                  time: doc['phoneNumber'],
+                                  name: doc['name'],
+                                  onDelete: () {},
+                                );
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcar/homePage.dart';
 import 'package:healthcar/rideDetailsRequester.dart';
@@ -14,6 +16,45 @@ class LoadingScreen1 extends StatefulWidget {
 }
 
 class _LoadingScreen1State extends State<LoadingScreen1> {
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  final user = FirebaseAuth.instance.currentUser;
+  var userData;
+
+  Future<void> updateUser(String location) async {
+    // FirebaseFirestore.instance
+    //     .collection('users')
+    //     .where('email', isEqualTo: user?.email!)
+    //     .get()
+    //     .then((QuerySnapshot querySnapshot) {
+    //   userData = querySnapshot.docs;
+    //   // if (querySnapshot.docs.length > 0) {
+    //   //   // Document found
+    //   //   userData = querySnapshot.docs[0].data();
+    //   //   // Do something with userData
+    //   // } else {
+    //   //   // Document not found
+    //   // }
+    // });
+
+    final QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: user?.email!)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      userData = snapshot.docs;
+      print(userData.toString());
+      // Do something with the document here
+    }
+
+    return users
+        .doc(userData)
+        .update({'location': location})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
   bool _isLoading = true;
 
   void _navigateToRideDetailsPage(String name, String phone) {
@@ -28,10 +69,17 @@ class _LoadingScreen1State extends State<LoadingScreen1> {
     );
   }
 
+  Future<int> waitMethod() async {
+    await updateUser(widget.location);
+    return 1;
+  }
+
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    waitMethod();
+
+    Timer(Duration(seconds: 1), () {
       setState(() {
         _isLoading = false;
       });
@@ -53,7 +101,7 @@ class _LoadingScreen1State extends State<LoadingScreen1> {
               CircularProgressIndicator(),
               SizedBox(height: 30),
               Text(
-                "Don't press back button",
+                "Don't press back button ${userData}",
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(height: 30),

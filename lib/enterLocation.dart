@@ -1,3 +1,4 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcar/loadingScreen1.dart';
 
@@ -9,6 +10,7 @@ class InputLocationPage extends StatefulWidget {
 }
 
 class _InputLocationPageState extends State<InputLocationPage> {
+  // CollectionReference users = FirebaseFirestore.instance.collection('users');
   final TextEditingController _locationController = TextEditingController();
 
   @override
@@ -16,6 +18,14 @@ class _InputLocationPageState extends State<InputLocationPage> {
     _locationController.dispose();
     super.dispose();
   }
+
+  // Future<void> updateUser(String location) {
+  //   return users
+  //       .doc('appUsers')
+  //       .update({'location': location})
+  //       .then((value) => print("User Updated"))
+  //       .catchError((error) => print("Failed to update user: $error"));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +54,8 @@ class _InputLocationPageState extends State<InputLocationPage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                // await updateUser(_locationController.text);
+
                 // Navigate to the loading screen with the entered location
                 Navigator.push(
                   context,

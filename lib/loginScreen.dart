@@ -95,10 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 24.0),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
-                  },
+                  onPressed: signIn,
                   child: Text(
                     'Log In',
                     style: TextStyle(
@@ -114,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 16.0),
                 TextButton(
-                  onPressed: signIn,
+                  onPressed: () {},
                   child: Text(
                     'Don\'t have an account? Sign Up',
                     style: TextStyle(color: Colors.grey.shade700),
