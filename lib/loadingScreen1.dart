@@ -22,21 +22,6 @@ class _LoadingScreen1State extends State<LoadingScreen1> {
   var userData;
 
   Future<void> updateUser(String location) async {
-    // FirebaseFirestore.instance
-    //     .collection('users')
-    //     .where('email', isEqualTo: user?.email!)
-    //     .get()
-    //     .then((QuerySnapshot querySnapshot) {
-    //   userData = querySnapshot.docs;
-    //   // if (querySnapshot.docs.length > 0) {
-    //   //   // Document found
-    //   //   userData = querySnapshot.docs[0].data();
-    //   //   // Do something with userData
-    //   // } else {
-    //   //   // Document not found
-    //   // }
-    // });
-
     final QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collection('users')
         .where('email', isEqualTo: user?.email!)
@@ -83,7 +68,7 @@ class _LoadingScreen1State extends State<LoadingScreen1> {
       setState(() {
         _isLoading = false;
       });
-      _navigateToRideDetailsPage("John Doe", "+1 (555) 555-5555");
+      _navigateToRideDetailsPage("Sharukh Shah", "9864386547");
     });
   }
 
