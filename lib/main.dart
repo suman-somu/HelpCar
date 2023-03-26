@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:healthcar/loginScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'homePage.dart';
+import 'package:flutter/material.dart';
+
+import 'helper/helperHomePage.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,23 +22,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'My App',
-        initialRoute: '/',
-        routes: {
-          '/': (context) => StreamBuilder<User?>(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return HomePage();
-                } else {
-                  LoginScreen();
-                }
-                return LoginScreen();
-              }),
-        },
-      ),
+      // home: MaterialApp(
+      //   title: 'My App',
+      //   initialRoute: '/',
+      //   routes: {
+      //     '/': (context) => StreamBuilder<User?>(
+      //         stream: FirebaseAuth.instance.authStateChanges(),
+      //         builder: (context, snapshot) {
+      //           if (snapshot.hasData) {
+      //             return HomePage();
+      //           } else {
+      //             LoginScreen();
+      //           }
+      //           return LoginScreen();
+      //         }),
+      //   },
+      // ),
+
+      home: helperHomePage(),
     );
   }
 }

@@ -1,6 +1,7 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcar/loadingScreen1.dart';
+
+import 'loadingScreen1.dart';
 
 class InputLocationPage extends StatefulWidget {
   const InputLocationPage({Key? key}) : super(key: key);

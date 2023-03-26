@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcar/enterLocation.dart';
-import 'package:healthcar/loadingScreen.dart';
+
+import 'enterLocation.dart';
+import 'loadingScreen.dart';
 
 class HomePage extends StatelessWidget {
   CollectionReference users = FirebaseFirestore.instance.collection('users');

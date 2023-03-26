@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcar/homePage.dart';
-import 'package:healthcar/rideDetailsRequester.dart';
+import 'package:healthcar/archived%20screens/rideDetailsRequester.dart';
 
 class LoadingScreen1 extends StatefulWidget {
   final String location;

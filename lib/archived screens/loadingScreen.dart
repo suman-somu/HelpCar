@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:healthcar/RideDetailsPage.dart';
+
+import 'RideDetailsPage.dart';
 
 class LoadingScreen extends StatefulWidget {
   final String name;
